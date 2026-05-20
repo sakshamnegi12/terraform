@@ -41,15 +41,15 @@ resource "aws_security_group" "my_sg" {
 }
 
 resource "aws_instance" "my_ec2" {
-  ami           = var.ami
-  instance_type = var.aws_instance_type
+  ami           = "ami-05d2d839d4f73aafb"
+  instance_type = "t2.micro"
   key_name      = aws_key_pair.my_key.key_name
 
   # Use vpc_security_group_ids instead of security_groups
   vpc_security_group_ids = [aws_security_group.my_sg.id]
 
   root_block_device {
-    volume_size = var.volume_size
+    volume_size = 15
     volume_type = "gp3"
   }
 
