@@ -44,6 +44,7 @@ resource "aws_instance" "my_ec2" {
   ami           = var.ami
   instance_type = var.aws_instance_type
   key_name      = aws_key_pair.my_key.key_name
+  user_data = file("install-apache.sh")
 
   # Use vpc_security_group_ids instead of security_groups
   vpc_security_group_ids = [aws_security_group.my_sg.id]
