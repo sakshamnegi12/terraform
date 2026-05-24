@@ -41,9 +41,13 @@ resource "aws_security_group" "my_sg" {
 }
 
 resource "aws_instance" "my_ec2" {
-  count         = 2
+  for_each  = tomap ({
+    PMIS_dev = "t2.micro"
+    PMIS_stage = "t2.medium"
+    PMIS_prod = "t2.large"
+  })
   ami           = var.ami
-  instance_type = var.aws_instance_type
+  instance_type = each.value
   key_name      = aws_key_pair.my_key.key_name
   user_data = file("install-apache.sh")
 
@@ -56,6 +60,6 @@ resource "aws_instance" "my_ec2" {
   }
 
   tags = {
-    Name = "my-webserver"
+    Name = each.key
   }
 }
