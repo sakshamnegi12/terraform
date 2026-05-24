@@ -41,6 +41,7 @@ resource "aws_security_group" "my_sg" {
 }
 
 resource "aws_instance" "my_ec2" {
+  count         = 2
   ami           = var.ami
   instance_type = var.aws_instance_type
   key_name      = aws_key_pair.my_key.key_name
