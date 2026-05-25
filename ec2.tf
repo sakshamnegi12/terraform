@@ -55,7 +55,7 @@ resource "aws_instance" "my_ec2" {
   vpc_security_group_ids = [aws_security_group.my_sg.id]
 
   root_block_device {
-    volume_size = var.volume_size
+    volume_size = var.env == "dev" ? 20 : var.volume_size
     volume_type = "gp3"
   }
 
