@@ -1,2 +1,4 @@
 .terraform/
 terraform.lock.hcl
+remote-infra/.terraform/
+remote-infra/terraform.lock.hcl
