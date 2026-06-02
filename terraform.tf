@@ -6,7 +6,7 @@ terraform {
     }
   }
 
-bucket "s3" {
+backend "s3" {
 bucket = "terraformstatebucket-tws"
 key = "terraform.tfstate"
 dynamodb_table = "terraform-state-table"
